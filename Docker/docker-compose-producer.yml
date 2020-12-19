@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  producer:
+    build: .
+    container_name: producer
+    restart: always
+    volumes:
+      - ./productor&consumidor:/app
+    command: >
+      sh -c "python3 /app/productor.py"

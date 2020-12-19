@@ -1,0 +1,16 @@
+FROM python:3.8-alpine
+
+RUN mkdir /app
+
+RUN apk add --update vim
+
+RUN apk add py3-pip
+
+RUN apk add build-base
+
+RUN pip3 install kafka-python
+
+#Instalando Dependencias
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+

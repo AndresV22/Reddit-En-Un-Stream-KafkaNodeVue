@@ -1,0 +1,4 @@
+#Version de praw
+praw == 7.1.0
+
+
