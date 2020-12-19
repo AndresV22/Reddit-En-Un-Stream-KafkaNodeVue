@@ -1,8 +1,9 @@
 import praw
 from kafka import KafkaProducer
+from json import dumps
 
 #Se crea productor
-producer = KafkaProducer(bootstrap_servers = 'localhost:9092', value_serializer = lambda x: dumps(x).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers = 'localhost:9092', value_serializer = lambda x: dumps(x).encode('utf-8'),api_version=(0, 10, 1))
 
 reddit = praw.Reddit(client_id='V5uor3c5ZmD4nQ',client_secret='ljuy3utnTTcQAV-dzH0642MaXAuciQ',user_agent='lab_distribuidos')
 
@@ -28,5 +29,6 @@ for comment in reddit.subreddit("learnpython").stream.comments():
         print(data,"\n")
         #Se publican los comentarios en el topico "comentarios"
         producer.send('comentarios', value = data)
+        print("enviado\n")
 
 
