@@ -3,9 +3,9 @@ version: '3'
 services:
   producer:
     build: .
-    container_name: producer
+    container_name: producerStatistics
     restart: always
     volumes:
       - ./productor&consumidor:/app
     command: >
-      sh -c "python3 /app/productor.py"
+      sh -c "python3 /app/productorStatistics.py"
