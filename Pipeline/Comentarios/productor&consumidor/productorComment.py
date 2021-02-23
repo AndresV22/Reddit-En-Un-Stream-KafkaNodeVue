@@ -12,7 +12,7 @@ reddit = praw.Reddit(client_id='V5uor3c5ZmD4nQ',client_secret='ljuy3utnTTcQAV-dz
 
 
 #Se filtra los comentarios de la subreddit 
-for comment in reddit.subreddit("learnpython").stream.comments():
+for comment in reddit.subreddit('all').stream.comments():
     submission = reddit.submission(id=comment.submission) 
     if submission.over_18 == True:
         print("filtrado\n")
@@ -29,6 +29,5 @@ for comment in reddit.subreddit("learnpython").stream.comments():
         print(data,"\n")
         #Se publican los comentarios en el topico "comentarios"
         producer.send('comentarios', value = data)
-        print("enviado\n")
 
 

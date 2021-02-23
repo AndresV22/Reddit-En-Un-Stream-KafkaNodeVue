@@ -1,4 +1,7 @@
 #Version de praw
 praw == 7.1.0
 
+#Version pymongo
+pymongo == 3.5.1
+
 
