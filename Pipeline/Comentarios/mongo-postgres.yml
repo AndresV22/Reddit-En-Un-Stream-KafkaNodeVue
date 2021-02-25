@@ -20,7 +20,7 @@ services:
 
   mongo:
     image: mongo
-    container_name: mongo
+    container_name: mongo-express
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -29,7 +29,33 @@ services:
       - "27017:27017"
     networks:
       - mongo-compose-network
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vale1234}
+      
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+  
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-percy@cat.cl}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-vale1234}
+    
+    ports:
+      - "${PGADMIN_PORT:-9090}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
 
 networks: 
     mongo-compose-network:
+      driver: bridge
+    postgres:
       driver: bridge
