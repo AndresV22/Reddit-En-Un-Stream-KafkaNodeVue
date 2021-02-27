@@ -15,8 +15,6 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: distribuidos
     links:
       - mongo
-    networks:
-      - mongo-compose-network
 
   mongo:
     image: mongo
@@ -27,9 +25,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: distribuidos
     ports:
       - "27017:27017"
-    networks:
-      - mongo-compose-network
 
 networks: 
-    mongo-compose-network:
-      driver: bridge
+  default:
+    external: 
+      name: app

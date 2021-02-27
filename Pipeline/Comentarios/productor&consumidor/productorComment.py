@@ -33,7 +33,13 @@ for comment in reddit.subreddit('all').stream.comments():
         submissionTitle = submission.title
         subreddit = comment.subreddit
         #Comentario a enviar
-        data = {'comment': commentBody, 'author': str(commentAuthor), 'score': commentScore, 'id': commentId, 'idSubmission': submissionId, 'submission': str(submissionTitle), 'subreddit': str(subreddit)}
+        data = {'comment': commentBody, 
+                'author': str(commentAuthor), 
+                'score': commentScore, 
+                'id': commentId, 
+                'idSubmission': submissionId, 
+                'submission': str(submissionTitle), 
+                'subreddit': str(subreddit)}
         print(data,"\n")
 
         #Se publican los comentarios en el topico "comentarios"

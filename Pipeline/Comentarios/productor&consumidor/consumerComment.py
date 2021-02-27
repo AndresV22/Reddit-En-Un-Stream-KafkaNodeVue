@@ -10,14 +10,14 @@ print("test\n")
 consumer = KafkaConsumer(
                         'comentarios',
                         bootstrap_servers=['kafka:9092'],
-                        auto_offset_reset='latest',
+                        auto_offset_reset='earliest',
                         enable_auto_commit=True,
 						value_deserializer=lambda x: loads(x.decode('utf-8')),
                         api_version=(0, 10, 1))
 
 
 client = MongoClient(
-                    '172.20.0.1', 
+                    'mongo', 
                     username="root", 
                     password="distribuidos", 
                     authSource='admin') #datos de conexion de bd

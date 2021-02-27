@@ -6,13 +6,13 @@ from pymongo import MongoClient
 from pymongo import *
 
 #Se crea productor
-'''producer = KafkaProducer(
+producer = KafkaProducer(
               bootstrap_servers = 'kafka:9092', 
               value_serializer = lambda x: dumps(x).encode('utf-8'),
-              api_version=(0, 10, 1))'''
+              api_version=(0, 10, 1))
 
 client = MongoClient(
-                    '172.20.0.1', 
+                    'mongo', 
                     username="root", 
                     password="distribuidos", 
                     authSource='admin') #datos de conexion de bd
@@ -41,4 +41,4 @@ for comment in reddit_comments:
   
   
   #Se envían los comentarios al topico "estadisticas"
-  #producer.send('stats', value = data)
+  producer.send('stats', value = data)
