@@ -25,6 +25,25 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: distribuidos
     ports:
       - "27017:27017"
+  
+  postgres:
+    container_name: postgresdb
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-distribuidos}
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-distribuidos@gmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-distribuidos}
+    ports:
+      - "${PGADMIN_PORT:-9090}:80"
+    restart: unless-stopped
 
 networks: 
   default:
