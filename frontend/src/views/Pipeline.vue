@@ -24,20 +24,25 @@
         <v-col class="text-center">
           <h2 class="display-1 font-weight-bold mb-3">Entradas</h2>
         </v-col>
-        <v-text-field
-          class="search"
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :items-per-page="5"
-          class="elevation-1 table"
-        ></v-data-table>
+        <v-card class="table">
+          <v-card-title>
+            <v-text-field
+              class="search"
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="desserts"
+            :items-per-page="5"
+            :search="search"
+            class="elevation-1"
+          ></v-data-table>
+        </v-card>
       </v-col>
     </v-row>
   </div>
@@ -51,6 +56,7 @@ export default {
     Chart
   },
   data: () => ({
+    search: "",
     headers: [
       {
         text: "Dessert (100g serving)",
@@ -167,7 +173,7 @@ export default {
 }
 
 .search {
-  margin-left: 90px;
-  margin-right: 90px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
