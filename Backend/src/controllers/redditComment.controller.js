@@ -28,7 +28,9 @@ export default{
 
   /*GET all redditComment. PROBADO*/     
   async getAllRedditComment(req, res){
-    await RedditComment.findAll()
+    await RedditComment.findAll({
+      attributes: { exclude: ['createdAt','updatedAt'] }
+    })
     .then((data) => {
       res.send(data);
     })
@@ -51,6 +53,25 @@ export default{
           });
       })
   },
+  /* Está req.query, req.body*/
+  /*Get a redditComment given the name, si no está retorna null ojo. PROBADO*/        
+  async getByNameRedditComment(req, res){
+    const name = req.query.name;
+    console.log(name)
+    await RedditComment.findOne({
+      where: {
+        name:name
+      }
+    })
+    .then((data) => {
+        res.send(data);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message: "Error retrieving Reddit Comment with name=" + name,
+        });
+    })
+},
   /*UPDATE a redditComment given the id and a request body. PROBADO*/    
   async updateRedditComment(req, res){
     const id = req.params.id;

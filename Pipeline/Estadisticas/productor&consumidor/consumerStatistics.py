@@ -53,20 +53,16 @@ def contarStopWords(text):
 
 
 #Postgresql
-PSQL_HOST = "localhost"
-PSQL_PORT = "5432"
-PSQL_USER = "distribuidos@gmail.com"
-PSQL_PASS = "distribuidos"
-
-connection_address="""
-host=%s port=%s user=%s password=%s
-""" %(PSQL_HOST, PSQL_PORT, PSQL_USER, PSQL_PASS)
-
-connection = psycopg2.connect(connection_address)
+connection = psycopg2.connect(
+            host="postgresdb",
+            database="distribuidos",
+            user="postgres",
+            password="distribuidos")
 
 cursor= connection.cursor()
 
 for message in consumer:
+    print(message)
     id = message.value['id']
     autor = message.value['author']
     comentario = message.value['comment']
@@ -85,9 +81,17 @@ for message in consumer:
     numMinus = 0
     palabras_sin_stopwords, numpalabrasSinSW, palabras_stopwords, numSW, idioma = contarStopWords(text)
     numVoc, numCons, numMayus, numMinus = contarVocalesyConsonantes(text)
-    connection.execute(
+
+    textstr = str(text)
+    idiomastr = str(idioma)
+    print('actualiza13')
+    name_Table="comentario"
+    sqlCreateTable = "create table if not exists "+name_Table+" (id varchar(128), autor varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_SW int ,num_SW int,idioma varchar(128),subreddit text,post text)"
+    cursor.execute(sqlCreateTable)
+    connection.commit()
+    cursor.execute(
         "insert into comentario (id, autor, comentario, score, total_palabras,num_voca,num_cons,num_mayus,num_minus,num_palabras_sin_SW,num_SW,idioma,subreddit,post) values (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-        (id,autor,comentario,score,text,numVoc,numCons,numMayus,numMinus,numpalabrasSinSW,numSW,idioma,subreddit,post))
+        (id,autor,comentario,score,textstr,numVoc,numCons,numMayus,numMinus,numpalabrasSinSW,numSW,idiomastr,subreddit,post))
 
 cursor.close()
 connection.close()

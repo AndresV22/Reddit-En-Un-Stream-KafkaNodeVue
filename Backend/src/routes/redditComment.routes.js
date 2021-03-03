@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/reddit-comments', controller.getAllRedditComment);
 router.get('/reddit-comment/:id', controller.getRedditComment);
+router.get('/reddit-comment-by-name', controller.getByNameRedditComment);
 router.post('/reddit-comment', controller.createRedditComment);
 router.put('/reddit-comment/:id', controller.updateRedditComment);
 router.delete('/reddit-comment/:id', controller.deleteRedditComment);

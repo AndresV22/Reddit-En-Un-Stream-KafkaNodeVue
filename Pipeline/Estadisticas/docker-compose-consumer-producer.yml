@@ -1,0 +1,23 @@
+version: '3'
+
+services: 
+  consumer:   
+      build: .
+      container_name: consumerStatistics
+      restart: always
+      volumes: 
+          - ./productor&consumidor:/app
+      command: >
+          sh -c "python3 /app/consumerStatistics.py"
+  producer:
+      build: .
+      container_name: producerStatistics
+      restart: always
+      volumes:
+        - ./productor&consumidor:/app
+      command: >
+        sh -c "python3 /app/productorStatistics.py"
+networks: 
+  default:
+    external: 
+      name: app
