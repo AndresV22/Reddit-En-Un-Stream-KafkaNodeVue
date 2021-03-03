@@ -86,7 +86,7 @@ for message in consumer:
     idiomastr = str(idioma)
     
     name_Table="comentarios"
-    sqlCreateTable = "create table if not exists "+name_Table+" (id serial PRIMARY KEY, post_id varchar(128), autor varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_sw int ,num_sw int,idioma varchar(128),subreddit text,post text)"
+    sqlCreateTable = "create table if not exists "+name_Table+" (id serial PRIMARY KEY, post_id varchar(128), author varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_sw int ,num_sw int,idioma varchar(128),subreddit text,post text)"
     cursor.execute(sqlCreateTable)
     connection.commit()
     cursor.execute(
