@@ -7,11 +7,23 @@ Exports five methods for redditComment CRUD operations.
 */ 
 export default{
 
-  /*POST a new redditComment given a request body PROBADO.*/    
+  /*POST a  new redditComment given a request body PROBADO.*/    
   async createRedditComment(req, res){
     const redditComment = {
-      name: req.body.name,
-      email: req.body.email
+      id:  req.body.id,
+      author: req.body.author,
+      comentario: req.body.comentario,
+      score: req.body.score,
+      total_palabras: req.body.total_palabras,
+      num_voca: req.body.num_voca,
+      num_cons: req.body.num_cons,
+      num_mayus: req.body.num_mayus,
+      num_minus: req.body.num_minus,
+      num_palabras_sin_SW: req.body.num_palabras_sin_SW,
+      num_SW: req.body.num_SW,
+      idioma: req.body.idioma,
+      subreddit: req.body.subreddit,
+      post: req.body.post,
     }
     console.log(redditComment)
     

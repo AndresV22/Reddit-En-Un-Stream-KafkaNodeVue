@@ -84,13 +84,13 @@ for message in consumer:
 
     textstr = str(text)
     idiomastr = str(idioma)
-    print('actualiza13')
-    name_Table="comentario"
-    sqlCreateTable = "create table if not exists "+name_Table+" (id varchar(128), autor varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_SW int ,num_SW int,idioma varchar(128),subreddit text,post text)"
+    
+    name_Table="comentarios"
+    sqlCreateTable = "create table if not exists "+name_Table+" (id serial PRIMARY KEY, post_id varchar(128), autor varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_sw int ,num_sw int,idioma varchar(128),subreddit text,post text)"
     cursor.execute(sqlCreateTable)
     connection.commit()
     cursor.execute(
-        "insert into comentario (id, autor, comentario, score, total_palabras,num_voca,num_cons,num_mayus,num_minus,num_palabras_sin_SW,num_SW,idioma,subreddit,post) values (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+        "insert into comentarios (post_id, author, comentario, score, total_palabras, num_voca, num_cons, num_mayus, num_minus, num_palabras_sin_sw, num_sw, idioma, subreddit, post) values (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
         (id,autor,comentario,score,textstr,numVoc,numCons,numMayus,numMinus,numpalabrasSinSW,numSW,idiomastr,subreddit,post))
 
 cursor.close()
