@@ -1,6 +1,6 @@
 version: '3'
 
-services:
+services: 
   producer:
     build: .
     container_name: producerComment
@@ -9,6 +9,14 @@ services:
       - ./productor&consumidor:/app
     command: >
       sh -c "python3 /app/productorComment.py"
+  consumer:   
+    build: .
+    container_name: consumerComment
+    restart: always
+    volumes: 
+        - ./productor&consumidor:/app
+    command: >
+        sh -c "python3 /app/consumerComment.py"
 networks: 
   default:
     external: 
