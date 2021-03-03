@@ -18,7 +18,7 @@
                 <v-list-item color="rgba(0, 0, 0, .4)" dark>
                   <v-list-item-content>
                     <v-list-item-title class="title">
-                      Andrés Alcaíno Castro
+                      Andrés Alcaíno
                     </v-list-item-title>
                     <v-list-item-subtitle
                       >Frontend Developer</v-list-item-subtitle
@@ -41,7 +41,7 @@
               <v-list-item color="rgba(0, 0, 0, .4)" dark>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    Valentina
+                    Valentina Ligueño
                   </v-list-item-title>
                   <v-list-item-subtitle>Backend Developer</v-list-item-subtitle>
                 </v-list-item-content>
@@ -62,7 +62,7 @@
                 <v-list-item color="rgba(0, 0, 0, .4)" dark>
                   <v-list-item-content>
                     <v-list-item-title class="title">
-                      Alberto
+                      Alberto Rodríguez
                     </v-list-item-title>
                     <v-list-item-subtitle
                       >Backend | Engineer</v-list-item-subtitle
