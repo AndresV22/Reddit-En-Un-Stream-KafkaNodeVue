@@ -17,9 +17,9 @@ export default {
 
   components: {
     Appbar,
-    Footer,
+    Footer
   },
 
-  data: () => ({}),
+  data: () => ({})
 };
 </script>

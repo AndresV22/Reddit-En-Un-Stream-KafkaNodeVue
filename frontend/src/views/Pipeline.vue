@@ -26,9 +26,22 @@
             class="elevation-1"
           >
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon big color="blue" @click="enterComment(item)">
-                mdi-door
-              </v-icon>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    rounded
+                    light
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="enterComment(item)"
+                  >
+                    <v-icon big color="blue">
+                      mdi-magnify
+                    </v-icon>
+                  </v-btn>
+                </template>
+                <span>Analizar</span>
+              </v-tooltip>
             </template>
           </v-data-table>
         </v-card>
