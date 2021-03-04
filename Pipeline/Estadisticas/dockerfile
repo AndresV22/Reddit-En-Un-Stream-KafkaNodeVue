@@ -16,7 +16,10 @@ RUN pip3 install kafka-python
 COPY ./requirements.txt .
 RUN pip3 install -r requirements.txt
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN python3 -m nltk.downloader punkt
 RUN pip3 install psycopg2
-RUN python -m textblob.download_corpora
+RUN pip3 install -U textblob
+RUN python3 -m textblob.download_corpora
 RUN python3 -m nltk.downloader stopwords
+RUN pip3 install langdetect
 COPY . /app

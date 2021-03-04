@@ -7,6 +7,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize 
 import psycopg2
+from langdetect import detect
 
 
 
@@ -35,8 +36,9 @@ def contarVocalesyConsonantes(string):
 
 
 def contarStopWords(text):
+    print('INICIO DE IDIOMA')
     try:
-        lan = text.detect_language()
+        lan = detect(str(text))
     except:
         print('no se puede detectar el idioma, ni stopwords')
         return [], 0, [], 0, " "
