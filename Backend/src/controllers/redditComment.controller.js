@@ -24,6 +24,10 @@ export default{
       idioma: req.body.idioma,
       subreddit: req.body.subreddit,
       post: req.body.post,
+      neg: req.body.post,
+      neu: req.body.post,
+      pos: req.body.post,
+      comp: req.body.post,
     }
     console.log(redditComment)
     

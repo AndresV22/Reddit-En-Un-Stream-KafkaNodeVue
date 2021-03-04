@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
       score: { type: Sequelize.INTEGER },
       total_palabras: { type: Sequelize.TEXT },
       num_voca: { type: Sequelize.INTEGER },
-      num_cons: { type: Sequelize.INTEGER},
+      num_cons: { type: Sequelize.INTEGER },
       num_mayus: { type: Sequelize.INTEGER },
       num_minus: { type: Sequelize.INTEGER },
       num_palabras_sin_sw: { type: Sequelize.INTEGER},
@@ -16,6 +16,10 @@ module.exports = (sequelize, Sequelize) => {
       idioma: { type: Sequelize.STRING(128)},
       subreddit: { type: Sequelize.TEXT},
       post: { type: Sequelize.TEXT },
+      neg: { type:Sequelize.FLOAT },
+      neu: { type:Sequelize.FLOAT },
+      pos: { type:Sequelize.FLOAT },
+      comp: { type:Sequelize.FLOAT },
     });
     return RedditComment;
   };
