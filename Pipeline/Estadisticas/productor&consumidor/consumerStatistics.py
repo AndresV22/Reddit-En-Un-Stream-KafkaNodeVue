@@ -51,6 +51,10 @@ def contarStopWords(text):
     stop_words_sentence= [w for w in text.words if w in stop_words]
     return palabras_filtradas, len(palabras_filtradas), stop_words_sentence, len(stop_words), nombreIdioma 
 
+def sentiment_analyzer_scores(sentence):
+    score = analyser.polarity_scores(sentence)
+    print("{:-<40} {}".format(sentence, str(score)))
+    return score
 
 #Postgresql
 connection = psycopg2.connect(
@@ -81,17 +85,24 @@ for message in consumer:
     numMinus = 0
     palabras_sin_stopwords, numpalabrasSinSW, palabras_stopwords, numSW, idioma = contarStopWords(text)
     numVoc, numCons, numMayus, numMinus = contarVocalesyConsonantes(text)
-
     textstr = str(text)
     idiomastr = str(idioma)
-    
+
+    #Analisis de sentimientos
+    sentimientos = sentiment_analyzer_scores(comentario)
+    negativo = float(sentimientos["neg"])
+    neutro = float(sentimientos["neu"])
+    positivo = float(sentimientos["pos"])
+    compuesto = float(sentimientos["compound"])
+
+
     name_Table="comentarios"
-    sqlCreateTable = "create table if not exists "+name_Table+" (id serial PRIMARY KEY, post_id varchar(128), author varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_sw int ,num_sw int,idioma varchar(128),subreddit text,post text)"
+    sqlCreateTable = "create table if not exists "+name_Table+" (id serial PRIMARY KEY, post_id varchar(128), author varchar(128), comentario text, score int, total_palabras text,num_voca int,num_cons int,num_mayus int,num_minus int,num_palabras_sin_sw int ,num_sw int,idioma varchar(128),subreddit text,post text,neg float,neu float,pos float,comp float)"
     cursor.execute(sqlCreateTable)
     connection.commit()
     cursor.execute(
-        "insert into comentarios (post_id, author, comentario, score, total_palabras, num_voca, num_cons, num_mayus, num_minus, num_palabras_sin_sw, num_sw, idioma, subreddit, post) values (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-        (id,autor,comentario,score,textstr,numVoc,numCons,numMayus,numMinus,numpalabrasSinSW,numSW,idiomastr,subreddit,post))
+        "insert into comentarios (post_id, author, comentario, score, total_palabras, num_voca, num_cons, num_mayus, num_minus, num_palabras_sin_sw, num_sw, idioma, subreddit, post, neg, neu, pos, comp) values (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+        (id,autor,comentario,score,textstr,numVoc,numCons,numMayus,numMinus,numpalabrasSinSW,numSW,idiomastr,subreddit,post,negativo,neutro,positivo,compuesto))
 
 cursor.close()
 connection.close()
