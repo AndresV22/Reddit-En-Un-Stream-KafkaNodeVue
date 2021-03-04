@@ -41,6 +41,8 @@ def contarStopWords(text):
         print('no se puede detectar el idioma, ni stopwords')
         return [], 0, [], 0, " "
     idioma = pycountry.languages.get(alpha_2=lan)
+    print('EL IDIOMA ES: ')
+    print(idioma)
     nombreIdioma = TextBlob(idioma.name).lower()
     try:
         stop_words = set(stopwords.words(str(nombreIdioma)))
@@ -49,7 +51,8 @@ def contarStopWords(text):
         return [], 0, [], 0, nombreIdioma
     palabras_filtradas= [w for w in text.words if not w in stop_words]
     stop_words_sentence= [w for w in text.words if w in stop_words]
-    return palabras_filtradas, len(palabras_filtradas), stop_words_sentence, len(stop_words), nombreIdioma 
+
+    return palabras_filtradas, len(palabras_filtradas), stop_words_sentence, len(stop_words_sentence), nombreIdioma 
 
 def sentiment_analyzer_scores(sentence):
     score = analyser.polarity_scores(sentence)
@@ -66,7 +69,9 @@ connection = psycopg2.connect(
 cursor= connection.cursor()
 
 for message in consumer:
+    print('Soy el consumidor y recibí el siguiente mensaje: \n')
     print(message)
+
     id = message.value['id']
     autor = message.value['author']
     comentario = message.value['comment']
