@@ -137,9 +137,9 @@
           <p v-if="positividad > negatividad">1) {{ analisis.pos }}</p>
           <p v-if="negatividad > positividad">1) {{ analisis.neg }}</p>
           <p v-if="negatividad == positividad">1) {{ analisis.medio }}</p>
-          <p v-if="neutralidad > 0.5">2) {{ analisis.neuAlto }}</p>
-          <p v-if="neutralidad < 0.5">2) {{ analisis.neuBajo }}</p>
-          <p v-if="neutralidad == 0.5">2) {{ analisis.neuMedio }}</p>
+          <p v-if="neutralidad > 50">2) {{ analisis.neuAlto }}</p>
+          <p v-if="neutralidad < 50">2) {{ analisis.neuBajo }}</p>
+          <p v-if="neutralidad == 50">2) {{ analisis.neuMedio }}</p>
         </v-card>
       </v-col>
     </v-row>
@@ -165,7 +165,7 @@ export default {
         "El comentario tiene un nivel alto de neutralidad. Esto quiere decir que el comentario no es exageradamente negativo ni positivo.",
       neuBajo:
         "El comentario tiene un nivel bajo de neutralidad. Esto quiere decir que tiene una connotacion demasiado positiva o demasiado negativa.",
-      neuMedio: "El comentario es perfectamente neutro."
+      neuMedio: "El comentario tiene un 50% de palabras neutras."
     }
   }),
   computed: {
