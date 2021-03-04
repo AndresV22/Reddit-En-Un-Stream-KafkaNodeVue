@@ -5,7 +5,7 @@
         Home
       </v-btn>
       <v-btn color="white" text rounded class="my-2" to="/Team">
-        Team
+        Equipo
       </v-btn>
       <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
         <strong>Reddit en un Stream</strong> - USACH
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({})
 };
 </script>
 

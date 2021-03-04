@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Pipeline from "../views/Pipeline.vue";
 import Team from "../views/Team.vue";
+import Comment from "../views/Comment.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/Team",
     name: "Team",
     component: Team
+  },
+  {
+    path: "/Comment",
+    name: "Comment",
+    component: Comment
   }
 ];
 
